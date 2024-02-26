@@ -414,10 +414,10 @@ func handleConfig(cmd *cobra.Command, arguments []string, server bool) error {
 	if server {
 		// Flag defaults
 		viper.SetDefault(flagAgentHost, "[::]")
-		viper.SetDefault(flagAgentPort, 8081)
-		viper.SetDefault(flagAPIListenAddress, "[::]:8080")
+		viper.SetDefault(flagAgentPort, 18081)
+		viper.SetDefault(flagAPIListenAddress, "[::]:18080")
 		viper.SetDefault(flagAPIRequestLimit, middlewares.MaxBytesLimit)
-		viper.SetDefault(flagAPIURL, "http://localhost:8080")
+		viper.SetDefault(flagAPIURL, "http://localhost:18080")
 		viper.SetDefault(flagAPIWriteTimeout, "15s")
 		viper.SetDefault(flagAssetsRateLimit, asset.DefaultAssetsRateLimit)
 		viper.SetDefault(flagAssetsBurstLimit, asset.DefaultAssetsBurstLimit)

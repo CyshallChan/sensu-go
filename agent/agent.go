@@ -760,6 +760,7 @@ func (a *Agent) connectWithBackoff(ctx context.Context) (transport.Transport, er
 	}
 
 	err := backoff.Retry(func(retry int) (bool, error) {
+		// 当配置多个backen的时候随机选择一个进行连接
 		backendURL := a.backendSelector.Select()
 
 		logger.Infof("connecting to backend URL %q", backendURL)

@@ -11,9 +11,9 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/sensu/sensu-go/agent"
 	corev2 "github.com/sensu/core/v2"
 	corev3 "github.com/sensu/core/v3"
+	"github.com/sensu/sensu-go/agent"
 	"github.com/sensu/sensu-go/backend/messaging"
 	"github.com/sensu/sensu-go/backend/metrics"
 	"github.com/sensu/sensu-go/backend/ringv2"
@@ -211,6 +211,7 @@ func NewSession(ctx context.Context, cfg SessionConfig) (*Session, error) {
 		}()
 	}
 
+	// 当有新的agent连接backend时候，向TopicKeepalive消息队列推送一条消息
 	if err := s.bus.Publish(messaging.TopicKeepalive, makeEntitySwitchBurialEvent(cfg)); err != nil {
 		return nil, err
 	}
